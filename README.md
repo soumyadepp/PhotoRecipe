@@ -35,8 +35,8 @@ To get a local copy up and running, follow these simple steps.
 1.  **Clone the repository:**
 
     ```bash
-    git clone https://github.com/your-username/your-repo-name.git
-    cd your-repo-name
+    git clone https://github.com/soumyadepp/PhotoRecipe.git
+    cd photorecipe
     ```
 
 2.  **Install NPM packages:**
@@ -68,7 +68,3 @@ In the project directory, you can run:
 - `npm run build`: Builds the app for production.
 - `npm run start`: Starts a production server.
 - `npm run lint`: Lints the project files.
-
----
-
-This project was bootstrapped with [Firebase Studio](https://firebase.google.com/docs/studio).
