@@ -60,7 +60,7 @@ PhotoRecipe is a mobile and web application that lets users upload food photos, 
 ### Backend
 
 - **API Gateway:** REST or GraphQL (FastAPI / Node.js + Express / NestJS)
-- **Vision Model:** Google Cloud Vision API, AWS Rekognition, or OpenAI Vision
+- **Vision Model:** Google Cloud Vision API via Gemini
 - **LLM Integration:** OpenAI API (GPT-4o mini or GPT-4 Turbo) for recipe generation
 - **Data Storage:**
   - User data, saved recipes → Firestore / DynamoDB / Postgres
