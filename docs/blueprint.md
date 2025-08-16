@@ -11,14 +11,14 @@ PhotoRecipe is a mobile and web application that lets users upload food photos, 
 ### Image Analysis (Computer Vision)
 
 - **Input:** User uploads an image (file upload or URL).
-- **Processing:** Use a vision API (Google Cloud Vision, AWS Rekognition, or OpenAI GPT-4 Turbo Vision) to extract food items.
+- **Processing:** Use a vision API (Google Cloud Vision via Gemini) to extract food items.
 - **Fallback:** If confidence score is low, prompt user with suggestions or manual ingredient selection.
 - **Output:** A structured list of ingredients (with confidence levels).
 
 ### Recipe Generation (LLM-Powered)
 
 - **Input:** Ingredient list from vision step.
-- **Processing:** Use an LLM (OpenAI GPT-4o mini or Anthropic Claude) to generate recipes.
+- **Processing:** Use an LLM (gemini-2.0-flash) to generate recipes.
 - **Constraints:** Ensure ingredient quantities and cooking steps are realistic.
 - **Output:** A recipe object containing:
   - Title
