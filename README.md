@@ -2,9 +2,6 @@
 
 PhotoRecipe is a smart recipe generator that turns photos of your ingredients into delicious meal ideas. Snap a picture, let our AI chef analyze what you have, and get a complete recipe in seconds!
 
-![PhotoRecipe Screenshot](https://placehold.co/800x450.png?text=PhotoRecipe+App)
-_This is a placeholder image. Replace with a screenshot of your app._
-
 ## ✨ Key Features
 
 - **📷 Photo-to-Ingredients:** Upload a photo of your ingredients, and our AI will identify them for you.
