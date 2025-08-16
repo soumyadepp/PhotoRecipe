@@ -1,26 +1,141 @@
-# **App Name**: PhotoRecipe
+# **PhotoRecipe – Production App Blueprint**
 
-## Core Features:
+## 1. Product Overview
 
-- Image Analysis: Analyze the ingredients from a photo using AI vision. Provide ingredient suggestions if the image analysis is unclear by using an AI tool.
-- Recipe Generation: Generate a recipe based on the identified ingredients using a Large Language Model (LLM).
-- Recipe Display: Display the recipe, including the list of ingredients and steps.
-- Recipe Adjustment: Enable users to adjust the generated recipe or list of ingredients, add steps and personalize instructions.
-- Image Import: Enable users to import an image via URL, or via file upload
+PhotoRecipe is a mobile and web application that lets users upload food photos, automatically identifies ingredients using AI vision, and instantly generates recipes tailored to the detected items. Users can personalize, save, and share these recipes.
 
-## Style Guidelines:
+---
 
-- Light Theme: Primary color: Vibrant Coral (#FF7F50), evoking the warmth of a home-cooked meal and stimulating appetite.
-- Light Theme: Secondary color: Fresh Mint (#98FF98), providing a refreshing and modern contrast.
-- Light Theme: Accent color: Sunny Yellow (#FFFF66), highlighting key elements and calls to action with a cheerful glow.
-- Light Theme: Neutral color: Light Gray (#D3D3D3), offering a subtle backdrop that allows the colors and images to stand out.
-- Light Theme: Background color: White (#FFFFFF), creating a clean and open feel, emphasizing clarity and focus.
-- Dark Theme: Primary color: Dark Slate Gray (#2F4F4F), providing a sophisticated and modern feel.
-- Dark Theme: Secondary color: Teal (#008080), offering a cool and calming contrast.
-- Dark Theme: Accent color: Gold (#FFD700), highlighting key elements with a touch of luxury.
-- Dark Theme: Neutral color: Dim Gray (#696969), offering a subtle backdrop that enhances the dark aesthetic.
-- Dark Theme: Background color: Black (#000000), creating a sleek and immersive experience.
-- Body font: 'Poppins', providing a modern, clean, and readable aesthetic for recipe instructions and descriptions.
-- Headline font: 'Poppins', bold, ensuring headlines are prominent and easy to read, maintaining consistency throughout the app.
-- Use Carbon icons to represent ingredients and recipe steps, ensuring a consistent and modern user interface.
-- Clean, card-based layout for recipes and ingredient lists, promoting easy navigation and visual organization.
+## 2. Core Features
+
+### Image Analysis (Computer Vision)
+
+- **Input:** User uploads an image (file upload or URL).
+- **Processing:** Use a vision API (Google Cloud Vision, AWS Rekognition, or OpenAI GPT-4 Turbo Vision) to extract food items.
+- **Fallback:** If confidence score is low, prompt user with suggestions or manual ingredient selection.
+- **Output:** A structured list of ingredients (with confidence levels).
+
+### Recipe Generation (LLM-Powered)
+
+- **Input:** Ingredient list from vision step.
+- **Processing:** Use an LLM (OpenAI GPT-4o mini or Anthropic Claude) to generate recipes.
+- **Constraints:** Ensure ingredient quantities and cooking steps are realistic.
+- **Output:** A recipe object containing:
+  - Title
+  - Ingredients with measurements
+  - Step-by-step instructions
+  - Estimated cooking time and servings
+
+### Recipe Display (UI/UX)
+
+- **Layout:** Card-based interface for easy scanning.
+- **Icons:** Use Carbon Icons to visually represent ingredients and steps.
+- **Typography:** _Poppins_ font for both headlines and body text for modern readability.
+- **Modes:** Support both Light and Dark themes (defined below).
+
+### Recipe Adjustment & Personalization
+
+- Allow users to:
+  - Add/remove ingredients
+  - Edit cooking steps
+  - Adjust serving size
+  - Save custom versions locally or in the cloud
+
+### Data Import
+
+- **Image Upload:** From device storage (mobile/web).
+- **Image URL:** Paste any direct link to food images.
+
+---
+
+## 3. Architecture
+
+### Frontend
+
+- **Framework:** React (Web) + React Native (Mobile)
+- **State Management:** Redux Toolkit or Zustand
+- **UI Library:** shadcn/ui + Tailwind (or custom if not using Tailwind)
+- **Image Preview:** Lazy loading and compression before upload
+
+### Backend
+
+- **API Gateway:** REST or GraphQL (FastAPI / Node.js + Express / NestJS)
+- **Vision Model:** Google Cloud Vision API, AWS Rekognition, or OpenAI Vision
+- **LLM Integration:** OpenAI API (GPT-4o mini or GPT-4 Turbo) for recipe generation
+- **Data Storage:**
+  - User data, saved recipes → Firestore / DynamoDB / Postgres
+  - Media → Cloud storage (S3 / Firebase Storage)
+
+### Authentication
+
+- Social logins (Google, Apple) or email/password using Firebase Auth or Auth0.
+
+### Deployment
+
+- Web → Vercel
+- Backend → GCP Cloud Run (Future)
+- Mobile → App Store + Play Store (using Expo or native builds) (Future)
+
+---
+
+## 4. Design System / Theming
+
+### Light Theme
+
+- Primary: Vibrant Coral (#FF7F50)
+- Secondary: Fresh Mint (#98FF98)
+- Accent: Sunny Yellow (#FFFF66)
+- Neutral: Light Gray (#D3D3D3)
+- Background: White (#FFFFFF)
+
+### Dark Theme
+
+- Primary: Dark Slate Gray (#2F4F4F)
+- Secondary: Teal (#008080)
+- Accent: Gold (#FFD700)
+- Neutral: Dim Gray (#696969)
+- Background: Black (#000000)
+
+---
+
+## 5. Roadmap
+
+### MVP (2–3 months)
+
+- Image upload + Vision API integration
+- LLM recipe generation
+- Editable ingredient list and steps
+- Light theme only
+
+### V1 Release (4–6 months)
+
+- Dark mode support
+- Social login + cloud sync
+- Save/share recipes
+- Basic analytics (recipe popularity, engagement)
+
+### V2 (6–12 months)
+
+- Multi-language support
+- Meal plan recommendations
+- Offline mode
+- Subscription model (premium recipes, unlimited generations)
+
+---
+
+## 6. Performance & Security
+
+- Compress images before upload to reduce latency.
+- Use HTTPS everywhere.
+- Rate-limit AI generation to prevent abuse.
+- Secure API keys via server (never expose them in frontend).
+- GDPR compliance for user data (allow data export/deletion).
+
+---
+
+## 7. Team & Tools
+
+- **Design:** Figma for prototyping UI
+- **Dev:** GitHub / GitLab CI for code pipelines
+- **Project Mgmt:** Jira / Linear for sprint tracking
+- **Monitoring:** Sentry (frontend), CloudWatch or GCP Logging (backend)
